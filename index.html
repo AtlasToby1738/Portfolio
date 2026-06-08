@@ -1575,12 +1575,29 @@
         getState(id)==='open' ? (sClose(),setState(id,'closed')) : (sOpen(),setState(id,'open'));
         }
         function openWin(id)  { if(AC.state==='suspended')AC.resume(); sOpen(); setState(id,'open'); }
-        function closeWin(id) { sClose(); setState(id,'closed'); }
-        function minWin(id) {
-        const s=getState(id);
-        if(s==='minimized'){ sOpen(); setState(id,'open'); }
-        else if(s==='open'){ sMin();  setState(id,'minimized'); }
+        function closeWin(id) {
+          sClose();
+          // Stop la vidéo YouTube en vidant l'iframe
+          const win = document.getElementById('win-'+id);
+          if(win) {
+            const iframe = win.querySelector('iframe');
+            if(iframe) { const src=iframe.src; iframe.src=''; iframe.src=src; }
+          }
+          setState(id,'closed');
         }
+        function minWin(id) {
+  const s=getState(id);
+  if(s==='minimized'){ sOpen(); setState(id,'open'); }
+  else if(s==='open'){
+    sMin();
+    const win = document.getElementById('win-'+id);
+    if(win) {
+      const iframe = win.querySelector('iframe');
+      if(iframe) { const src=iframe.src; iframe.src=''; iframe.src=src; }
+    }
+    setState(id,'minimized');
+  }
+}
         function updateTaskbar() {
         const tb=document.getElementById('tb-btns'); tb.innerHTML='';
         const all  = [...WIN_IDS,...PROJECTS.map(p=>'proj-'+p.id)];
