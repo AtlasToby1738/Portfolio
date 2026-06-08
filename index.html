@@ -1392,7 +1392,7 @@
         title:'Recreating Darius from League of Legends',
         sub:'Darius in Unreal Engine',
         image:'DariusPP.png',
-        media:{ type:'video', file:'DariusVideo.mp4' },
+        media:{ type:'video', file:'HjO2J4OKt_0' },
         desc:'I recreated from A to Z the champion Darius from League of Legends, and the basic mechanics of a MOBA (move, attack, abilities). <br><br>A little video is here to show you the result. There is an audio but only in French...',
         // ✍️ DETAILS
         details:'In one of my first Unreal Engine projects, I recreated one of the most famous League of Legends champion &quot;Darius&quot;.<br><br>Everything in this project is made with Blueprints as Darius&apos;s abilities (see more here), Dummy (punching bag) and Tower (trigger range, when the player enters, the tower shoots at him).​<br><br>I am really proud of this one, it shows me that I can recreate things I see in my favorite video games. <br><br>It was a school project where i learned UML, Variable Tables, UE Blueprint Interface and even more.',
@@ -1404,7 +1404,7 @@
         title:'Recreating Friday Night Funkin base mechanics',
         sub:'FNF in Unreal Engine',
         image:'FnfPP.png',
-        media:{ type:'video', file:'FNFVideo.mp4' },
+        media:{ type:'video', file:'JjLgbK3CKyw' },
         desc:'I recreated the base mechanics of Friday Night Funkin with two modes: random notes and scripted presets.<br><br>A little video is here to show you the result. There is an audio but only in French...',
         // ✍️ DETAILS
         details:'For this school project, I recreated the main mechanics of &quot;Friday Night Funkin&quot; and even more.<br><br>I started by recreating the arrow system with classic ones and holding ones. After that, I created a preset system where you can customize your level (music, bit, arrow type, arrow direction, arrow spawn time, arrow Holding Time, ...). To conclude, I added an infinite game mode where you have to face boss and their special abilities to break your high score.<br><br>Everything in this project is made in Unreal Engine with Blueprints, and I am really proud of myself. It was my really first step in the programming of a rhythm game. And I really love the result, and it shows me that I am able to create even more creative things with rhythm (I play piano and really love music and rhythm games).<br><br>During the creation of this project I learned UML, UE Data Table, UE MetaSounds.',
@@ -1496,13 +1496,12 @@
         if (!m) return `<div style="width:100%;height:220px;background:linear-gradient(135deg,${p.color}88,${p.color}44);display:flex;align-items:center;justify-content:center;"><span style="font-size:48px;">🎮</span></div>`;
 
         if (m.type === 'video') {
-        return `<div style="width:100%;background:#000;line-height:0;">
-        <video controls autoplay muted loop style="width:100%;max-height:340px;display:block;object-fit:contain;">
-        <source src="${m.file}" type="video/mp4">
-        <source src="${m.file.replace(/\.mp4$/i,'.webm')}" type="video/webm">
-        <p style="color:#aaa;padding:16px;font-size:13px;">Video unavailable — check the file path.</p>
-        </video>
-        </div>`;
+          return `<div style="width:100%;background:#000;line-height:0;">
+            <iframe width="100%" height="340" 
+              src="https://www.youtube-nocookie.com/embed/${m.file}"
+              frameborder="0" allowfullscreen style="display:block;">
+            </iframe>
+          </div>`;
         }
 
         if (m.type === 'gif') {
