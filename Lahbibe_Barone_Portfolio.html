@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lahbibe Barone — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .desktop {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Segoe UI',Tahoma,sans-serif;
+            background: radial-gradient(ellipse 40% 35% at 8% 6%, rgba(255,255,220,0.85) 0%,rgba(180,240,255,0.4) 30%,transparent 65%), radial-gradient(ellipse 90% 60% at 50% 0%, rgba(120,210,255,0.95) 0%,rgba(60,180,240,0.6) 40%,transparent 70%), radial-gradient(ellipse 55% 50% at 100% 0%, rgba(0,80,200,0.75) 0%,rgba(0,140,220,0.4) 45%,transparent 65%), radial-gradient(ellipse 100% 55% at 50% 100%,rgba(0,200,180,0.9) 0%,rgba(0,160,200,0.6) 40%,transparent 70%), radial-gradient(ellipse 50% 40% at 0% 100%, rgba(0,230,160,0.8) 0%,transparent 55%), radial-gradient(ellipse 40% 35% at 100% 90%, rgba(80,40,200,0.35) 0%,transparent 55%), linear-gradient(180deg,#87ceeb 0%,#48b8e8 12%,#1a9dd8 25%,#0e8fc8 38%,#0d9fb8 52%,#0abba8 65%,#08c8b0 78%,#00d4b8 100%);
+            transition: background 1.2s ease;
+        }
+
+            .desktop.dark {
+                background: radial-gradient(ellipse 60% 40% at 50% 5%, rgba(80,40,160,0.5) 0%,rgba(60,20,140,0.3) 45%,transparent 68%), radial-gradient(ellipse 50% 40% at 0% 30%, rgba(40,10,120,0.6) 0%,transparent 60%), radial-gradient(ellipse 55% 45% at 100% 60%, rgba(60,20,100,0.35) 0%,transparent 60%), radial-gradient(ellipse 80% 50% at 50% 100%, rgba(10,5,40,0.95) 0%,rgba(20,10,60,0.7) 50%,transparent 85%), linear-gradient(180deg,#0a0520 0%,#12063a 15%,#1a0840 28%,#0f1260 42%,#081840 58%,#051828 75%,#031520 100%);
+            }
+
+        /* SUN — top left, hidden in dark */
+        .sun {
+            position: absolute;
+            top: -60px;
+            left: -60px;
+            width: 260px;
+            height: 260px;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 50%,rgba(255,255,200,0.95) 0%,rgba(255,220,100,0.6) 20%,rgba(180,240,255,0.3) 45%,transparent 68%);
+            animation: sunPulse 6s ease-in-out infinite;
+            opacity: 1;
+            transition: opacity 1.2s;
+        }
+
+        .desktop.dark .sun {
+            opacity: 0 !important;
+            animation: none;
+        }
+
+        /* sunray REMOVED — was causing visible rotation artifact */
+        .sunray {
+            display: none;
+        }
+
+        @keyframes sunPulse {
+            0%,100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+
+            50% {
+                transform: scale(1.08);
+                opacity: 1;
+            }
+        }
+
+        /* MOON — top right, hidden in day */
+        .moon {
+            position: absolute;
+            top: 4%;
+            right: 6%;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient(circle at 38% 32%,rgba(255,255,230,0.98),rgba(200,220,255,0.9) 55%,rgba(150,170,220,0.5) 80%);
+            box-shadow: 0 0 28px rgba(200,220,255,0.55),0 0 60px rgba(150,180,255,0.25);
+            opacity: 0;
+            transition: opacity 1.2s;
+        }
+
+        .desktop.dark .moon {
+            opacity: 1;
+        }
+
+        /* AURORA dark only */
+        .aurora {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1.4s;
+            animation: auroraWave 12s ease-in-out infinite;
+        }
+
+        .desktop.dark .aurora {
+            opacity: 0.22;
+        }
+
+        @keyframes auroraWave {
+            0% {
+                background: linear-gradient(180deg,rgba(0,255,150,0) 0%,rgba(0,200,180,0.18) 40%,rgba(60,0,180,0.1) 70%,transparent 100%);
+            }
+
+            33% {
+                background: linear-gradient(180deg,rgba(100,0,200,0) 0%,rgba(0,180,200,0.2) 35%,rgba(0,255,150,0.12) 65%,transparent 100%);
+            }
+
+            66% {
+                background: linear-gradient(180deg,rgba(0,200,255,0) 0%,rgba(80,0,200,0.18) 40%,rgba(0,220,160,0.1) 70%,transparent 100%);
+            }
+
+            100% {
+                background: linear-gradient(180deg,rgba(0,255,150,0) 0%,rgba(0,200,180,0.18) 40%,rgba(60,0,180,0.1) 70%,transparent 100%);
+            }
+        }
+
+        /* ORBS */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .orb1 {
+            width: 480px;
+            height: 480px;
+            top: -120px;
+            right: -100px;
+            background: radial-gradient(circle at 35% 30%,rgba(255,255,255,0.52),rgba(100,200,255,0.08) 58%);
+            border: 1.5px solid rgba(255,255,255,0.55);
+        }
+
+        .orb2 {
+            width: 300px;
+            height: 300px;
+            bottom: 10%;
+            left: 22%;
+            background: radial-gradient(circle at 34% 30%,rgba(255,255,255,0.48),rgba(60,220,200,0.06) 58%);
+            border: 1.5px solid rgba(255,255,255,0.5);
+        }
+
+        .orb3 {
+            width: 180px;
+            height: 180px;
+            top: 28%;
+            right: 18%;
+            background: radial-gradient(circle at 34% 30%,rgba(255,255,255,0.6),rgba(80,220,255,0.05) 58%);
+            border: 2px solid rgba(255,255,255,0.6);
+        }
+
+        .orb4 {
+            width: 90px;
+            height: 90px;
+            top: 15%;
+            left: 55%;
+            background: radial-gradient(circle at 34% 30%,rgba(255,255,255,0.68),rgba(80,230,255,0.04) 58%);
+            border: 2px solid rgba(255,255,255,0.68);
+        }
+
+        .orb5 {
+            width: 55px;
+            height: 55px;
+            bottom: 30%;
+            right: 38%;
+            background: radial-gradient(circle at 34% 30%,rgba(255,255,255,0.75),rgba(80,255,200,0.04) 58%);
+            border: 2px solid rgba(255,255,255,0.75);
+        }
+
+        .orb6 {
+            width: 38px;
+            height: 38px;
+            top: 52%;
+            left: 12%;
+            background: radial-gradient(circle at 34% 30%,rgba(255,255,255,0.8),rgba(80,220,255,0.04) 58%);
+            border: 1.5px solid rgba(255,255,255,0.8);
+        }
+
+        .orb7 {
+            width: 22px;
+            height: 22px;
+            top: 35%;
+            left: 38%;
+            background: radial-gradient(circle at 34% 30%,rgba(255,255,255,0.88),rgba(80,255,220,0.04) 58%);
+            border: 1px solid rgba(255,255,255,0.88);
+        }
+
+        .orb8 {
+            width: 16px;
+            height: 16px;
+            bottom: 42%;
+            right: 22%;
+            background: radial-gradient(circle at 34% 30%,rgba(255,255,255,0.9),rgba(80,255,220,0.04) 58%);
+            border: 1px solid rgba(255,255,255,0.9);
+        }
+
+        /* STARS */
+        #stars {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1.4s;
+        }
+
+        .desktop.dark #stars {
+            opacity: 1;
+        }
+
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            background: white;
+            animation: twinkle ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%,100% {
+                opacity: 0.15;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.4);
+            }
+        }
+
+        /* shooting stars REMOVED */
+        .shoot {
+            display: none;
+        }
+
+        /* BUBBLES */
+        .bbl {
+            position: absolute;
+            pointer-events: none;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 25%,rgba(255,255,255,0.92) 0%,rgba(255,255,255,0.28) 32%,rgba(180,240,255,0.06) 72%);
+            border: 1px solid rgba(255,255,255,0.78);
+            box-shadow: inset 0 0 8px rgba(255,255,255,0.4);
+            animation: riseB linear infinite;
+        }
+
+        @keyframes riseB {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-420px) scale(1.1);
+                opacity: 0;
+            }
+        }
+
+        /* WAVE CLICK */
+        .wave-click {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: scale(0);
+            opacity: 1;
+            border: 2px solid rgba(100,220,255,0.7);
+            background: radial-gradient(circle,rgba(180,248,255,0.35) 0%,rgba(100,210,248,0.08) 50%,transparent 72%);
+            animation: waveExpand 0.7s cubic-bezier(0.2,0.6,0.4,1) forwards;
+        }
+
+            .wave-click.w2 {
+                animation-delay: 0.08s;
+                border-color: rgba(100,220,255,0.4);
+                background: transparent;
+            }
+
+            .wave-click.w3 {
+                animation-delay: 0.16s;
+                border-color: rgba(100,220,255,0.2);
+                background: transparent;
+            }
+
+        @keyframes waveExpand {
+            0% {
+                transform: scale(0);
+                opacity: 0.9;
+            }
+
+            60% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* LAYOUT */
+        .layout {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 22px;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* HERO */
+        .hero-glass {
+            pointer-events: auto;
+            width: min(500px,80vw);
+            background: linear-gradient(135deg,rgba(255,255,255,0.55),rgba(160,245,255,0.28));
+            border: 1.5px solid rgba(255,255,255,0.85);
+            border-radius: 26px;
+            padding: 22px 36px 20px;
+            backdrop-filter: blur(18px);
+            box-shadow: 0 16px 56px rgba(0,100,180,0.22),inset 0 2px 0 rgba(255,255,255,0.95);
+            position: relative;
+            text-align: center;
+            flex-shrink: 0;
+            transition: background 1s,border-color 1s,box-shadow 1s;
+        }
+
+        .desktop.dark .hero-glass {
+            background: linear-gradient(135deg,rgba(30,10,80,0.7),rgba(60,20,120,0.45));
+            border-color: rgba(180,140,255,0.45);
+            box-shadow: 0 16px 56px rgba(80,0,160,0.35),inset 0 2px 0 rgba(200,180,255,0.25);
+        }
+
+        .hero-avatar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.95);
+            box-shadow: 0 5px 18px rgba(0,100,200,0.38);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
+            overflow: hidden;
+            background-image: url('PP.png');
+            background-size: cover;
+        }
+
+        .hero-second-avatar {
+            position: relative;
+            left: 10px;
+            width: 98px;
+            height: 98px;
+            border-radius: 25%;
+            border: 2px solid rgba(255,255,255,0.95);
+            box-shadow: 0 5px 18px rgba(0,100,200,0.38);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
+            overflow: hidden;
+            background-image: url('PP.png');
+            background-size: cover;
+        }
+
+        .hero-tag {
+            font-size: 10px;
+            color: #007a8a;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            font-weight: 800;
+            transition: color 1s;
+        }
+
+        .desktop.dark .hero-tag {
+            color: #a080ff;
+        }
+
+        .hero-name {
+            font-size: 30px;
+            font-weight: 300;
+            color: #073560;
+            line-height: 1.1;
+            margin-bottom: 4px;
+            transition: color 1s;
+        }
+
+        .desktop.dark .hero-name {
+            color: #e0d0ff;
+        }
+
+        .hero-name strong {
+            font-weight: 800;
+        }
+
+        .hero-role {
+            font-size: 13px;
+            color: #1278a8;
+            margin-bottom: 3px;
+            transition: color 1s;
+        }
+
+        .desktop.dark .hero-role {
+            color: #90b8ff;
+        }
+
+        .hero-hint {
+            font-size: 11px;
+            color: #25a0b8;
+            opacity: 0.85;
+            transition: color 1s;
+        }
+
+        .desktop.dark .hero-hint {
+            color: #b090ff;
+        }
+
+        /* ICON BAR */
+        .icon-bar {
+            pointer-events: auto;
+            margin-top: 14px;
+            display: flex;
+            gap: 6px;
+            align-items: flex-start;
+            background: linear-gradient(135deg,rgba(255,255,255,0.48),rgba(160,245,255,0.25));
+            border: 1.5px solid rgba(255,255,255,0.78);
+            border-radius: 20px;
+            padding: 12px 18px 10px;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 8px 30px rgba(0,120,200,0.16),inset 0 1px 0 rgba(255,255,255,0.92);
+            flex-shrink: 0;
+            transition: background 1s,border-color 1s,box-shadow 1s;
+        }
+
+        .desktop.dark .icon-bar {
+            background: linear-gradient(135deg,rgba(30,10,80,0.65),rgba(60,20,120,0.4));
+            border-color: rgba(160,120,255,0.4);
+            box-shadow: 0 8px 30px rgba(80,0,200,0.25),inset 0 1px 0 rgba(180,160,255,0.2);
+        }
+
+        .dsk-icon {
+            width: 76px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 4px 7px;
+            border-radius: 12px;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+            transition: background 0.15s;
+        }
+
+            .dsk-icon:hover {
+                background: rgba(255,255,255,0.38);
+            }
+
+            .dsk-icon.selected {
+                background: rgba(100,220,255,0.4);
+                outline: 1px solid rgba(255,255,255,0.75);
+            }
+
+        .ico-box {
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            font-size: 26px;
+            background: linear-gradient(145deg,rgba(255,255,255,0.94),rgba(200,248,255,0.68) 55%,rgba(170,235,255,0.44));
+            border: 1.5px solid rgba(255,255,255,1);
+            box-shadow: 0 5px 18px rgba(0,100,200,0.22),inset 0 2px 0 rgba(255,255,255,1),inset 0 -1px 0 rgba(80,170,220,0.2);
+            transition: transform 0.12s,box-shadow 0.12s,background 1s;
+        }
+
+        .desktop.dark .ico-box {
+            background: linear-gradient(145deg,rgba(60,20,120,0.85),rgba(40,10,100,0.7) 55%,rgba(20,5,80,0.6));
+            border-color: rgba(180,140,255,0.6);
+            box-shadow: 0 5px 18px rgba(100,0,255,0.28),inset 0 2px 0 rgba(200,180,255,0.2);
+        }
+
+        .dsk-icon:hover .ico-box {
+            transform: translateY(-3px) scale(1.06);
+            box-shadow: 0 10px 26px rgba(0,100,200,0.3);
+        }
+
+        .dsk-icon p {
+            font-size: 11px;
+            color: white;
+            text-align: center;
+            font-weight: 700;
+            line-height: 1.3;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.65),0 0 14px rgba(0,0,0,0.3);
+        }
+
+        /* DARK TOGGLE */
+        .dark-toggle {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            z-index: 600;
+            width: 48px;
+            height: 26px;
+            border-radius: 13px;
+            cursor: pointer;
+            border: 1.5px solid rgba(255,255,255,0.8);
+            background: linear-gradient(135deg,rgba(255,255,255,0.55),rgba(180,240,255,0.4));
+            box-shadow: 0 2px 10px rgba(0,100,200,0.2);
+            display: flex;
+            align-items: center;
+            padding: 0 4px;
+            transition: background 0.8s,border-color 0.8s;
+        }
+
+        .desktop.dark .dark-toggle {
+            background: linear-gradient(135deg,rgba(40,10,100,0.8),rgba(60,20,140,0.6));
+            border-color: rgba(160,120,255,0.6);
+        }
+
+        .dark-toggle-knob {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg,#fff,#e8f8ff);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+            transition: transform 0.35s cubic-bezier(0.34,1.5,0.64,1),background 0.8s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+        }
+
+        .desktop.dark .dark-toggle-knob {
+            transform: translateX(22px);
+            background: linear-gradient(135deg,#2a0860,#5010c0);
+        }
+
+        /* ============================================================
+        WINDOWS
+        ============================================================ */
+        .win {
+            position: absolute;
+            min-width: 340px;
+            background: linear-gradient(155deg,#e4faff 0%,#f0fdff 40%,#e2fff8 100%);
+            border-radius: 8px 8px 4px 4px;
+            z-index: 100;
+            box-shadow: 0 22px 70px rgba(0,60,120,0.26),inset 0 2px 0 rgba(255,255,255,0.85),0 0 0 1px rgba(80,180,220,0.2);
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.82) translateY(14px);
+            transform-origin: center top;
+            transition: transform 0.26s cubic-bezier(0.34,1.45,0.64,1),opacity 0.22s ease,visibility 0s linear 0.22s,background 1s,box-shadow 1s;
+        }
+
+            .win.open {
+                visibility: visible;
+                opacity: 1;
+                pointer-events: auto;
+                transform: scale(1) translateY(0);
+                transition: transform 0.26s cubic-bezier(0.34,1.45,0.64,1),opacity 0.22s ease,visibility 0s linear 0s,background 1s,box-shadow 1s;
+            }
+
+            .win.minimized {
+                visibility: hidden;
+                opacity: 0;
+                pointer-events: none;
+                transform: scale(0.55) translateY(70px);
+                transition: transform 0.2s cubic-bezier(0.4,0,1,1),opacity 0.18s ease,visibility 0s linear 0.2s,background 1s;
+            }
+
+        .desktop.dark .win {
+            background: linear-gradient(155deg,#0e0828 0%,#140a38 40%,#0c1030 100%);
+            box-shadow: 0 22px 70px rgba(80,0,180,0.35),inset 0 2px 0 rgba(160,120,255,0.2),0 0 0 1px rgba(120,80,220,0.3);
+        }
+
+        .win-tb {
+            height: 32px;
+            background: linear-gradient(180deg,#5cc8f0,#1e92cc 45%,#1270a8);
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            gap: 6px;
+            cursor: grab;
+            flex-shrink: 0;
+            border-radius: 7px 7px 0 0;
+            transition: background 1s;
+        }
+
+        .desktop.dark .win-tb {
+            background: linear-gradient(180deg,#5020c0,#2c0880 45%,#1a0460);
+        }
+
+        .win-tb:active {
+            cursor: grabbing;
+        }
+
+        .win-tb-ico {
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .win-tb-txt {
+            flex: 1;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .win-btns {
+            display: flex;
+            gap: 2px;
+            flex-shrink: 0;
+        }
+
+        .wbtn {
+            width: 26px;
+            height: 20px;
+            border-radius: 3px;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: inherit;
+            transition: filter 0.1s;
+        }
+
+            .wbtn:hover {
+                filter: brightness(1.3);
+            }
+
+            .wbtn.mi {
+                background: linear-gradient(180deg,#72cce8,#3aa8d0);
+            }
+
+            .wbtn.cl {
+                background: linear-gradient(180deg,#f08080,#d04040);
+            }
+
+        .desktop.dark .wbtn.mi {
+            background: linear-gradient(180deg,#a060ff,#6020c0);
+        }
+
+        .desktop.dark .wbtn.cl {
+            background: linear-gradient(180deg,#ff5090,#c01050);
+        }
+
+        .proj-statusbar {
+            background: linear-gradient(180deg,rgba(200,242,255,0.9),rgba(180,232,252,0.8));
+            border-top: 1px solid rgba(160,225,245,0.5);
+            padding: 4px 12px;
+            font-size: 10px;
+            color: #3a7aaa;
+            display: flex;
+            flex-shrink: 0;
+            transition: background 1s, color 1s, border-color 1s;
+        }
+
+        .desktop.dark .proj-statusbar {
+            background: linear-gradient(180deg,rgba(20,8,60,0.9),rgba(14,6,50,0.85));
+            border-top-color: rgba(80,40,160,0.4);
+            color: #b090ff;
+        }
+
+        .win-addr {
+            background: linear-gradient(180deg,rgba(235,252,255,0.96),rgba(210,245,255,0.82));
+            border-bottom: 1px solid rgba(160,225,245,0.42);
+            padding: 5px 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            transition: background 1s;
+        }
+
+        .desktop.dark .win-addr {
+            background: linear-gradient(180deg,rgba(20,8,60,0.9),rgba(14,6,50,0.85));
+            border-bottom-color: rgba(80,40,160,0.4);
+        }
+
+        .addr-bar {
+            flex: 1;
+            background: rgba(255,255,255,0.9);
+            border: 1px solid rgba(140,205,238,0.6);
+            border-radius: 3px;
+            padding: 3px 8px;
+            font-size: 11px;
+            color: #1a5580;
+            font-family: inherit;
+            transition: background 1s,color 1s,border-color 1s;
+        }
+
+        .desktop.dark .addr-bar {
+            background: rgba(20,8,60,0.7);
+            color: #b090ff;
+            border-color: rgba(100,60,200,0.5);
+        }
+
+        .anav {
+            background: linear-gradient(180deg,rgba(255,255,255,0.84),rgba(210,242,255,0.68));
+            border: 1px solid rgba(140,205,238,0.5);
+            border-radius: 3px;
+            padding: 3px 9px;
+            font-size: 11px;
+            color: #1a5580;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 1s;
+        }
+
+        .desktop.dark .anav {
+            background: rgba(40,15,100,0.7);
+            color: #b090ff;
+            border-color: rgba(100,60,200,0.5);
+        }
+
+        .win-body {
+            padding: 18px 20px;
+            overflow-y: auto;
+            -webkit-user-select: text;
+            user-select: text;
+        }
+
+        /* Aqua components */
+        .aqua-card {
+            background: linear-gradient(135deg,rgba(255,255,255,0.74),rgba(180,245,255,0.36));
+            border: 1px solid rgba(255,255,255,0.9);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 12px rgba(80,165,225,0.08),inset 0 1px 0 rgba(255,255,255,0.92);
+            transition: background 1s,border-color 1s;
+        }
+
+        .desktop.dark .aqua-card {
+            background: linear-gradient(135deg,rgba(30,10,80,0.6),rgba(20,8,60,0.45));
+            border-color: rgba(100,60,200,0.35);
+            box-shadow: 0 2px 12px rgba(80,0,200,0.12);
+        }
+
+        .aqua-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: linear-gradient(135deg,rgba(255,255,255,0.76),rgba(180,245,255,0.46));
+            border: 1px solid rgba(200,238,255,0.82);
+            border-radius: 16px;
+            padding: 5px 13px;
+            font-size: 12px;
+            color: #0d5a8a;
+            font-weight: 600;
+            margin: 3px;
+            transition: background 1s,color 1s;
+        }
+
+        .desktop.dark .aqua-pill {
+            background: linear-gradient(135deg,rgba(50,20,120,0.6),rgba(30,10,100,0.4));
+            color: #c0a0ff;
+            border-color: rgba(100,60,200,0.5);
+        }
+
+        .aqua-pill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: linear-gradient(135deg,#5dd4f8,#1a9dd8);
+            flex-shrink: 0;
+        }
+
+        .desktop.dark .aqua-pill-dot {
+            background: linear-gradient(135deg,#a060ff,#6020d0);
+        }
+
+        .aqua-badge {
+            display: inline-block;
+            background: rgba(91,205,245,0.22);
+            border: 1px solid rgba(91,205,245,0.44);
+            border-radius: 10px;
+            padding: 3px 10px;
+            font-size: 10px;
+            color: #0d6a9a;
+            font-weight: 700;
+            transition: background 1s,color 1s;
+        }
+
+        .desktop.dark .aqua-badge {
+            background: rgba(100,40,200,0.25);
+            border-color: rgba(120,60,220,0.5);
+            color: #c0a0ff;
+        }
+
+        /* PROJECT CARDS with image background */
+        .proj-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+            gap: 14px;
+        }
+
+        .proj-mini {
+            border-radius: 14px;
+            padding: 0;
+            cursor: pointer;
+            transition: transform 0.18s,box-shadow 0.18s,background 1s;
+            -webkit-user-select: none;
+            user-select: none;
+            overflow: hidden;
+            position: relative;
+            min-height: 200px;
+            border: 1.5px solid rgba(255,255,255,0.6);
+            box-shadow: 0 4px 16px rgba(0,80,160,0.18);
+        }
+
+            .proj-mini.hidden {
+                display: none;
+            }
+
+            .proj-mini:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 10px 28px rgba(0,80,160,0.28);
+            }
+
+            .proj-mini:active {
+                transform: scale(0.97);
+            }
+
+        /* Image background layer */
+        .proj-img {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s;
+        }
+
+        .proj-mini:hover .proj-img {
+            transform: scale(1.04);
+        }
+
+        /* Gradient overlay */
+        .proj-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,rgba(0,30,80,0.15) 0%,rgba(0,20,60,0.65) 55%,rgba(0,10,40,0.92) 100%);
+        }
+
+        .desktop.dark .proj-overlay {
+            background: linear-gradient(180deg,rgba(10,0,40,0.25) 0%,rgba(10,0,60,0.7) 55%,rgba(5,0,30,0.95) 100%);
+        }
+
+        /* Card content above overlay */
+        .proj-content {
+            position: relative;
+            z-index: 2;
+            padding: 14px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 200px;
+        }
+
+        .proj-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+        }
+
+        .proj-sub {
+            font-size: 11px;
+            color: rgba(180,230,255,0.9);
+            margin-bottom: 6px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .proj-desc {
+            font-size: 11px;
+            color: rgba(200,240,255,0.85);
+            line-height: 1.5;
+            margin-bottom: 8px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .proj-more {
+            font-size: 10px;
+            color: rgba(150,220,255,0.9);
+            font-weight: 700;
+        }
+
+        /* TAG FILTER BAR */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 14px;
+            align-items: center;
+        }
+
+        .filter-label {
+            font-size: 11px;
+            color: #1a6a8a;
+            font-weight: 700;
+            margin-right: 4px;
+        }
+
+        .desktop.dark .filter-label {
+            color: #b090ff;
+        }
+
+        .filter-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: linear-gradient(135deg,rgba(255,255,255,0.7),rgba(180,245,255,0.4));
+            border: 1.5px solid rgba(140,210,240,0.6);
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 11px;
+            color: #0d5a8a;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s,border-color 0.15s,color 0.15s;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .desktop.dark .filter-tag {
+            background: linear-gradient(135deg,rgba(40,15,100,0.55),rgba(25,8,80,0.4));
+            color: #c0a0ff;
+            border-color: rgba(100,60,200,0.45);
+        }
+
+        .filter-tag:hover {
+            background: rgba(255,255,255,0.9);
+            border-color: rgba(60,160,220,0.8);
+        }
+
+        .filter-tag.active {
+            background: linear-gradient(135deg,#5dd4f8,#1a9dd8);
+            color: white;
+            border-color: #1a9dd8;
+            box-shadow: 0 2px 8px rgba(30,145,205,0.35);
+        }
+
+        .desktop.dark .filter-tag.active {
+            background: linear-gradient(135deg,#8040f0,#5010c0);
+            border-color: #5010c0;
+        }
+
+        .filter-count {
+            font-size: 10px;
+            opacity: 0.75;
+        }
+
+        .win-text-h {
+            font-size: 12px;
+            font-weight: 700;
+            color: #0a4d7a;
+            transition: color 1s;
+        }
+
+        .desktop.dark .win-text-h {
+            color: #c0a0ff;
+        }
+
+        .win-text {
+            font-size: 13px;
+            color: #2a6a8a;
+            transition: color 1s;
+        }
+
+        .desktop.dark .win-text {
+            color: #a090cc;
+        }
+
+        .win-text-sm {
+            font-size: 12px;
+            color: #2a6a8a;
+            transition: color 1s;
+        }
+
+        .desktop.dark .win-text-sm {
+            color: #a090cc;
+        }
+
+        .btn-aqua {
+            display: inline-block;
+            background: linear-gradient(180deg,#5dd4f8,#2aa8d8,#1a8cc0);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 8px 20px;
+            border-radius: 16px;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 3px 10px rgba(30,145,205,0.32),inset 0 1px 0 rgba(255,255,255,0.46);
+            transition: transform 0.15s,background 1s;
+            font-family: inherit;
+            width: 100%;
+        }
+
+        .desktop.dark .btn-aqua {
+            background: linear-gradient(180deg,#8040f0,#5010c0,#3008a0);
+        }
+
+        .btn-aqua:hover {
+            transform: translateY(-1px);
+        }
+
+        .mail-input {
+            width: 100%;
+            background: rgba(255,255,255,0.88);
+            border: 1px solid rgba(140,205,238,0.65);
+            border-radius: 8px;
+            padding: 8px 11px;
+            font-size: 12px;
+            color: #1a4a6a;
+            font-family: inherit;
+            outline: none;
+            margin-bottom: 8px;
+            transition: background 1s,color 1s;
+        }
+
+        .desktop.dark .mail-input {
+            background: rgba(20,8,60,0.7);
+            color: #d0c0ff;
+            border-color: rgba(100,60,200,0.5);
+        }
+
+        textarea.mail-input {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* TASKBAR */
+        .taskbar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 46px;
+            z-index: 500;
+            background: linear-gradient(180deg,rgba(0,160,220,0.55),rgba(0,110,190,0.85) 50%,rgba(0,85,170,0.95));
+            border-top: 1.5px solid rgba(255,255,255,0.55);
+            backdrop-filter: blur(16px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 14px;
+            transition: background 1s;
+        }
+
+        .desktop.dark .taskbar {
+            background: linear-gradient(180deg,rgba(30,5,80,0.6),rgba(20,3,60,0.9) 50%,rgba(10,2,40,0.97));
+            border-top-color: rgba(120,80,255,0.4);
+        }
+
+        .tb-wins {
+            position: absolute;
+            left: 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            max-width: 60%;
+            overflow: hidden;
+        }
+
+        .tb-btn {
+            height: 34px;
+            padding: 0 12px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 4px;
+            color: white;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+            transition: background 0.15s;
+            font-family: inherit;
+        }
+
+            .tb-btn:hover {
+                background: rgba(255,255,255,0.28);
+            }
+
+            .tb-btn.active {
+                background: rgba(255,255,255,0.26);
+                border-color: rgba(255,255,255,0.5);
+            }
+
+        .tb-clock {
+            color: white;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .tb-clock-h {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .tb-clock-d {
+            font-size: 10px;
+            opacity: 0.82;
+        }
+    </style>
+</head>
+<body>
+    <div class="desktop" id="dt">
+
+        <div class="sun"></div>
+        <div class="sunray"></div>
+        <div class="moon"></div>
+        <!--<div class="aurora"></div>-->
+        <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+        <div class="orb orb4"></div><div class="orb orb5"></div><div class="orb orb6"></div>
+        <div class="orb orb7"></div><div class="orb orb8"></div>
+        <div id="stars"></div>
+        <div id="particles"></div>
+
+        <button class="dark-toggle" id="darkToggle" onclick="toggleDark()" title="Toggle dark mode">
+            <div class="dark-toggle-knob" id="toggleKnob">☀️</div>
+        </button>
+
+        <div class="layout">
+            <div class="hero-glass">
+                <div class="hero-avatar"></div>
+                <div class="hero-tag">✦ GAME PROGRAMMER PORTFOLIO</div>
+                <div class="hero-name"><strong>Lahbibe</strong> Barone</div>
+                <div class="hero-role">"If you don’t take risks, you can’t create a future"</div>
+                <div class="hero-hint">Double-click the icons to explore</div>
+            </div>
+            <div class="icon-bar">
+                <div class="dsk-icon" ondblclick="toggleWin('about')">    <div class="ico-box">🗿</div><p>About me</p></div>
+                <div class="dsk-icon" ondblclick="toggleWin('projects')"> <div class="ico-box">🗂️</div><p>Projects</p></div>
+                <div class="dsk-icon" ondblclick="toggleWin('skills')">   <div class="ico-box">⚡</div><p>Skills</p></div>
+                <div class="dsk-icon" ondblclick="toggleWin('contact')">  <div class="ico-box">✉️</div><p>Contact</p></div>
+                <div class="dsk-icon" ondblclick="toggleWin('cv')">       <div class="ico-box">📄</div><p>Resume</p></div>
+            </div>
+        </div>
+
+        <!-- ===== ABOUT ===== -->
+        <div class="win" id="win-about" style="top:60px;left:120px;width:430px;">
+            <div class="win-tb" id="tb-about">
+                <div class="win-tb-ico">🗿</div><div class="win-tb-txt">About me —</div>
+                <div class="win-btns"><button class="wbtn mi" onclick="minWin('about')">—</button><button class="wbtn cl" onclick="closeWin('about')">✕</button></div>
+            </div>
+            <div class="win-addr"><div class="addr-bar">lahbibe.barone/about-me</div></div>
+            <div class="win-body" style="max-height:420px;">
+                <div class="aqua-card" style="display:flex;align-items:center;gap:16px;">
+                    <div style="width: 128px; height: 128px; border-radius: 20%; display: flex; align-items: center; justify-content: center; display: flex; align-items: center; justify-content: center; font-size: 27px; overflow: hidden; background-image: url('PP.png'); background-size: cover;"></div>
+                    <div>
+                        <div class="proj-title" style="font-size:17px;color:#0a4d7a;">Lahbibe Barone</div>
+                        <div class="proj-sub" style="font-size:12px;margin-top:2px;color:#3a9fc4;">Game Programmer · Charleroi</div>
+                        <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;"><span class="aqua-badge">Student</span><span class="aqua-badge">Looking for an internship</span></div>
+                    </div>
+                </div>
+                <div class="aqua-card">
+                    <div class="win-text-h" style="margin-bottom:8px;">👋 Hey!</div>
+                    <div class="win-text" style="line-height:1.7;">My name is Lahbibe Barone, I live in Belgium, currently studying at Haute École Albert Jacquard specializing in game programming.<br><br>I truly love video games and I discovered programming when I was about 14 years old. Since then, I have always wanted to create my own games.<br><br>I'm hardworking and self-motivated. I have an artistic mind and I'm known for my efficiency and, most importantly, I'm able to take criticism and feedbacks.</div>
+                </div>
+                <div class="aqua-card">
+                    <div class="win-text-h" style="margin-bottom:8px;">📍 Info</div>
+                    <div class="win-text-sm" style="line-height:2.1;">🌍 Charleroi, Belgium<br>🏫 <a href="https://www.heaj.be/fr/">Haute École Albert Jacquard</a><br>🎓 Studiyng for a Master in Video Game <br>💼 Currently in my second year of five<br>🌐 French · English</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PROJECTS ===== -->
+        <div class="win" id="win-projects" style="top:300px;left:50%;transform:translateX(-50%);width:min(860px,90vw);">
+            <div class="win-tb" id="tb-projects">
+                <div class="win-tb-ico">🗂️</div><div class="win-tb-txt">Projects —</div>
+                <div class="win-btns"><button class="wbtn mi" onclick="minWin('projects')">—</button><button class="wbtn cl" onclick="closeWin('projects')">✕</button></div>
+            </div>
+            <div class="win-addr"><div class="addr-bar">lahbibe.barone/projects</div></div>
+            <div class="win-body" style="max-height:540px;">
+
+                <!-- FILTER BAR -->
+                <div class="filter-bar" id="filterBar">
+                    <span class="filter-label">Filter:</span>
+                    <!-- tags are built by JS from PROJECTS data -->
+                </div>
+
+                <!-- PROJECT GRID -->
+                <div class="proj-row" id="projGrid"></div>
+
+            </div>
+        </div>
+
+        <!-- Project detail windows (built by JS) -->
+        <div class="win" id="win-proj-0" style="top:80px;left:260px;width:780px;"></div>
+        <div class="win" id="win-proj-1" style="top:90px;left:280px;width:780px;"></div>
+        <div class="win" id="win-proj-2" style="top:70px;left:240px;width:780px;"></div>
+        <div class="win" id="win-proj-3" style="top:85px;left:270px;width:780px;"></div>
+
+        <!-- ===== SKILLS ===== -->
+        <div class="win" id="win-skills" style="top:80px;left:160px;width:475px;">
+            <div class="win-tb" id="tb-skills">
+                <div class="win-tb-ico">⚡</div><div class="win-tb-txt">Skills —</div>
+                <div class="win-btns"><button class="wbtn mi" onclick="minWin('skills')">—</button><button class="wbtn cl" onclick="closeWin('skills')">✕</button></div>
+            </div>
+            <div class="win-addr"><div class="addr-bar">lahbibe.barone/skills</div></div>
+            <div class="win-body" style="max-height:400px;">
+                <div class="aqua-card"><div class="win-text-h" style="margin-bottom:10px;">⚙️ Sofware </div><div><span class="aqua-pill"><span class="aqua-pill-dot"></span>Unreal Engine</span><span class="aqua-pill"><span class="aqua-pill-dot"></span>Unity</span><span class="aqua-pill"><span class="aqua-pill-dot"></span>Visual Studio</span><span class="aqua-pill"><span class="aqua-pill-dot"></span>Blender</span><span class="aqua-pill"><span class="aqua-pill-dot"></span>Premiere Pro</span><span class="aqua-pill"><span class="aqua-pill-dot"></span>PhotoShop</span><span class="aqua-pill"><span class="aqua-pill-dot"></span>Figma</span></div></div>
+                <div class="aqua-card"><div class="win-text-h" style="margin-bottom:10px;">🛠️ Programming Languages</div><div><span class="aqua-pill"><span class="aqua-pill-dot"></span>C++</span><span class="aqua-pill"><span class="aqua-pill-dot"></span>C#</span><span class="aqua-pill"><span class="aqua-pill-dot"></span>Blueprints</span></div></div>
+                <div class="aqua-card"><div class="win-text-h" style="margin-bottom:10px;">💬 Languages</div><div><span class="aqua-pill"><span class="aqua-pill-dot"></span>French (Native)</span><span class="aqua-pill"><span class="aqua-pill-dot"></span>English (B2)</span></div></div>
+            </div>
+        </div>
+
+        <!-- ===== CONTACT ===== -->
+        <div class="win" id="win-contact" style="top:100px;left:200px;width:400px;">
+            <div class="win-tb" id="tb-contact">
+                <div class="win-tb-ico">✉️</div><div class="win-tb-txt">Contact —</div>
+                <div class="win-btns"><button class="wbtn mi" onclick="minWin('contact')">—</button><button class="wbtn cl" onclick="closeWin('contact')">✕</button></div>
+            </div>
+            <div class="win-addr"><div class="addr-bar">lahbibe.barone/contact</div></div>
+            <div class="win-body" style="max-height:380px;">
+                <div class="aqua-card">
+                    <div class="win-text-h" style="margin-bottom:12px;">📬 Find me</div>
+                    <div class="win-text" style="line-height:2.3;">📧 lahbibe.barone.pro@gmail.com<br>💼 <a href="https://www.linkedin.com/in/lahbibe-barone-62617238b/">linkedin.com/in/lahbibe-barone</a><br>☏ +32 0484313816<br>📍 Charleroi, Belgium</div>
+                </div>
+                <div class="aqua-card">
+                    <div class="win-text-h" style="margin-bottom:10px;">✉️ Send a message</div>
+                    <input class="mail-input" id="mail-name" type="text" placeholder="Your name">
+                    <input class="mail-input" id="mail-subject" type="text" placeholder="Subject">
+                    <textarea class="mail-input" id="mail-body" placeholder="Your message…"></textarea>
+                    <button class="btn-aqua" onclick="sendMail()">Send ✈️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== RESUME ===== -->
+        <div class="win" id="win-cv" style="top:60px;left:180px;width:420px;">
+            <div class="win-tb" id="tb-cv">
+                <div class="win-tb-ico">📄</div><div class="win-tb-txt">Resume —</div>
+                <div class="win-btns"><button class="wbtn mi" onclick="minWin('cv')">—</button><button class="wbtn cl" onclick="closeWin('cv')">✕</button></div>
+            </div>
+            <div class="win-addr"><div class="addr-bar">lahbibe.barone/resume</div></div>
+            <div class="win-body" style="max-height:280px;">
+                <div class="aqua-card" style="text-align:center;">
+                    <div style="font-size:48px;margin-bottom:12px;">📄</div>
+                    <div class="win-text-h" style="margin-bottom:8px;font-size:14px;">Lahbibe Barone — Resume</div>
+                    <div class="win-text" style="margin-bottom:18px;font-size:12px;line-height:1.6;">Click below to open or download<br>the full CV as a PDF.</div>
+                    <!-- 📄 YOUR CV PDF — update "CV.pdf" to your actual file name -->
+                    <a href="CV.pdf" target="_blank" style="text-decoration:none;">
+                        <button class="btn-aqua" style="margin-bottom:10px;">🔗 Open CV in new tab</button>
+                    </a>
+                    <br>
+                    <a href="CV.pdf" download style="text-decoration:none;">
+                        <button class="btn-aqua" style="background:linear-gradient(180deg,#5de8a8,#1ad870,#10b055);">⬇ Download CV</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- TASKBAR -->
+        <div class="taskbar">
+            <div class="tb-wins" id="tb-btns"></div>
+            <div class="tb-clock">
+                <div class="tb-clock-h" id="clock-h">00:00</div>
+                <div class="tb-clock-d" id="clock-d">---</div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        /* ============================================================
+        DARK MODE
+        ============================================================ */
+        let isDark = false;
+        function toggleDark() {
+        isDark = !isDark;
+        document.getElementById('dt').classList.toggle('dark', isDark);
+        document.getElementById('toggleKnob').textContent = isDark ? '🌙' : '☀️';
+        if (isDark) buildStars();
+        }
+        function buildStars() {
+        const sc = document.getElementById('stars'); sc.innerHTML = '';
+        for (let i = 0; i < 180; i++) {
+        const s = document.createElement('div'); s.className = 'star';
+        const sz = Math.random() * 2.5 + 0.5;
+        s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*70}%;left:${Math.random()*100}%;animation-duration:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s;`;
+        sc.appendChild(s);
+        }
+        for (let i = 0; i < 4; i++) {
+        const sh = document.createElement('div'); sh.className = 'shoot';
+        sh.style.cssText = `width:${60+Math.random()*80}px;top:${5+Math.random()*35}%;left:${Math.random()*60}%;animation-duration:${5+Math.random()*6}s;animation-delay:${Math.random()*8}s;`;
+        sc.appendChild(sh);
+        }
+        }
+
+        /* ============================================================
+        WAVE CLICK
+        ============================================================ */
+        document.addEventListener('mousedown', e => {
+        if (AC.state === 'suspended') AC.resume();
+        sClick();
+        [0,1,2].forEach(i => {
+        const maxR = 80 + i * 40;
+        const r = document.createElement('div');
+        r.className = 'wave-click' + (i > 0 ? ' w'+(i+1) : '');
+        r.style.cssText = `width:${maxR}px;height:${maxR}px;left:${e.clientX-maxR/2}px;top:${e.clientY-maxR/2}px;`;
+        document.body.appendChild(r);
+        r.addEventListener('animationend', () => r.remove());
+        });
+        });
+
+        /* ============================================================
+        SOUNDS
+        ============================================================ */
+        const AC = new (window.AudioContext || window.webkitAudioContext)();
+        function playT(f,t,d,v,a){ const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);o.type=t;o.frequency.value=f;const n=AC.currentTime;g.gain.setValueAtTime(0,n);g.gain.linearRampToValueAtTime(v,n+(a||0.01));g.gain.exponentialRampToValueAtTime(0.0001,n+d);o.start(n);o.stop(n+d+0.05);}
+        function sOpen() { playT(440,'sine',0.18,0.12);setTimeout(()=>playT(554,'sine',0.18,0.1),55);setTimeout(()=>playT(659,'sine',0.22,0.09),110);setTimeout(()=>playT(880,'sine',0.28,0.07),165); }
+        function sClose(){ playT(659,'sine',0.14,0.1);setTimeout(()=>playT(554,'sine',0.14,0.09),50);setTimeout(()=>playT(440,'sine',0.18,0.07),100); }
+        function sMin()  { playT(523,'sine',0.12,0.08);setTimeout(()=>playT(392,'sine',0.16,0.07),60); }
+        function sClick(){ playT(1200,'sine',0.06,0.045,0.002);setTimeout(()=>playT(900,'sine',0.08,0.028,0.002),25); }
+
+        /* ============================================================
+        MAIL
+        ✉️ YOUR EMAIL — replace below
+        ============================================================ */
+        const CONTACT_EMAIL = 'lahbibe.barone.pro@gmail.com'; // ← YOUR EMAIL HERE
+        function sendMail() {
+        const name=document.getElementById('mail-name').value.trim();
+        const subject=document.getElementById('mail-subject').value.trim();
+        const body=document.getElementById('mail-body').value.trim();
+        if (!subject && !body) return;
+        const full = name ? `From: ${name}\n\n${body}` : body;
+        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject||'Portfolio contact')}&body=${encodeURIComponent(full)}`;
+        }
+
+        /* ============================================================
+        PROJECTS DATA
+        — image: path to your project screenshot/image
+        — tags:  used for filtering (shown as filter bubbles)
+        ============================================================ */
+        /* ============================================================
+        PROJECTS DATA
+        media types:
+        carousel → { type:'carousel', files:['img1.jpg','img2.jpg',...] }
+        gif      → { type:'gif',      file:'anim.gif' }
+        video    → { type:'video',    file:'demo.mp4' }
+        details: extra text shown under description (supports HTML)
+        ============================================================ */
+        const PROJECTS = [
+        { id:0,
+        title:'Velvet Steps',
+        sub:'First Game Jam Project',
+        image:'VelvetSteps.png',
+        // 🖼️ CAROUSEL — add/remove screenshot filenames freely
+        media:{ type:'carousel', files:['VelvetSteps.png','VelvetSteps2.png','VelvetSteps3.png'] },
+        desc:'Velvet Steps is a first person cozy game where you must prepare a birthday party before all the guests arrive.',
+        // ✍️ DETAILS — any extra info you want, supports HTML
+        details:'This was made during a 48h game jam. I worked on <strong>all gameplay systems</strong> and level design. We used Unreal Engine with Blueprints only.',
+        tech:'Blueprints · Game Jam · Unreal Engine', year:'2025', type:'Game Jam Project', status:'Published',
+        url:'https://faontastique.itch.io/surprise',
+        tags:['Blueprints','Game Jam','Unreal Engine','Team Work'], color:'#5dd4f8' },
+
+        { id:1,
+        title:'Recreating Darius from League of Legends',
+        sub:'Darius in Unreal Engine',
+        image:'DariusPP.png',
+        // 🎞️ GIF — replace DariusPP.gif with your actual gif
+        media:{ type:'gif', file:'DariusPP.gif' },
+        desc:'I recreated from A to Z the champion Darius from League of Legends, and the basic mechanics of a MOBA (move, attack, abilities).',
+        // ✍️ DETAILS
+        details:'School project — one month of work. Implemented animations, hitboxes, basic AI, and camera system entirely in Blueprints.',
+        tech:'Blueprints · School Project · Unreal Engine', year:'2025', type:'Recreating', status:'Released',
+        url:'github.com/lahbibe/darius',
+        tags:['Blueprints','Unreal Engine','Recreating'], color:'#a8edea' },
+
+        { id:2,
+        title:'Recreating Friday Night Funkin base mechanics',
+        sub:'FNF in Unreal Engine',
+        image:'FnfPP.png',
+        // 🎬 VIDEO — replace FnfPP.mp4 with your actual video file
+        media:{ type:'video', file:'FnfPP.mp4' },
+        desc:'I recreated the base mechanics of Friday Night Funkin with two modes: random notes and scripted presets.',
+        // ✍️ DETAILS
+        details:'Implemented note spawning system, timing accuracy scoring, and an audio sync manager to keep notes aligned with the beat.',
+        tech:'Blueprints · School Project · Unreal Engine', year:'2025', type:'Recreating', status:'Released',
+        url:'github.com/lahbibe/fnf',
+        tags:['Blueprints','Unreal Engine','Recreating'], color:'#b8f5e0' },
+
+        { id:3,
+        title:'Making a TRPG mixed with Chess mechanics',
+        sub:'TRPG Mixed with Chess Game',
+        image:'WorkInProgress.png',
+        // 🎞️ GIF — replace WorkInProgress.gif with your actual gif
+        media:{ type:'gif', file:'WorkInProgress.gif' },
+        desc:"I am currently creating a TRPG in which you will follow Ben's life. The main mechanic is chess, with new pieces and squares.",
+        // ✍️ DETAILS
+        details:'Personal long-term project. Currently building the turn system, board state management, and a dialogue engine in C++ with Blueprints for events.',
+        tech:'C++ · Blueprints · Unreal Engine', year:'2024', type:'Personal Work', status:'In Progress',
+        url:'github.com/lahbibe/trpg',
+        tags:['C++','Blueprints','Unreal Engine','Personnal Work'], color:'#7ec8e3' },
+        ];
+
+        /* ============================================================
+        FILTER SYSTEM
+        ============================================================ */
+        const allTags = [...new Set(PROJECTS.flatMap(p => p.tags).filter(Boolean))].sort();
+        let activeTags = new Set();
+
+        function buildFilterBar() {
+        const bar = document.getElementById('filterBar');
+        allTags.forEach(tag => {
+        const btn = document.createElement('button');
+        btn.className = 'filter-tag';
+        btn.dataset.tag = tag;
+        btn.innerHTML = tag + ` <span class="filter-count">(${PROJECTS.filter(p=>p.tags.includes(tag)).length})</span>`;
+        btn.addEventListener('click', () => toggleFilter(tag));
+        bar.appendChild(btn);
+        });
+        }
+        function toggleFilter(tag) {
+        activeTags.has(tag) ? activeTags.delete(tag) : activeTags.add(tag);
+        document.querySelectorAll('.filter-tag').forEach(btn =>
+        btn.classList.toggle('active', activeTags.has(btn.dataset.tag)));
+        applyFilter();
+        }
+        function applyFilter() {
+        document.querySelectorAll('.proj-mini').forEach(card => {
+        const ct = card.dataset.tags.split(',');
+        const vis = activeTags.size===0 || [...activeTags].every(t=>ct.includes(t));
+        card.classList.toggle('hidden', !vis);
+        });
+        }
+
+        /* ============================================================
+        BUILD PROJECT GRID CARDS
+        ============================================================ */
+        function buildProjectGrid() {
+        const grid = document.getElementById('projGrid');
+        PROJECTS.forEach((p, idx) => {
+        const card = document.createElement('div');
+        card.className = 'proj-mini';
+        card.dataset.tags = p.tags.filter(Boolean).join(',');
+        card.onclick = () => openProject(idx);
+        const imgDiv = document.createElement('div');
+        imgDiv.className = 'proj-img';
+        imgDiv.style.cssText = `background-image:url('${p.image}'),linear-gradient(135deg,${p.color}88,${p.color}44);background-size:cover;background-position:center;`;
+        const overlay = document.createElement('div');
+        overlay.className = 'proj-overlay';
+        const content = document.createElement('div');
+        content.className = 'proj-content';
+        content.innerHTML = `
+        <div style="margin-bottom:6px;display:flex;gap:4px;flex-wrap:wrap;">
+        ${p.tags.filter(Boolean).map(t=>`<span style="background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.35);border-radius:10px;padding:2px 8px;font-size:9px;color:white;font-weight:700;">${t}</span>`).join('')}
+        </div>
+        <div class="proj-title">${p.title}</div>
+        <div class="proj-sub">${p.sub}</div>
+        <div class="proj-desc">${p.desc}</div>
+        <div class="proj-more">▶ Details</div>`;
+        card.appendChild(imgDiv);
+        card.appendChild(overlay);
+        card.appendChild(content);
+        grid.appendChild(card);
+        });
+        }
+
+        /* ============================================================
+        MEDIA BLOCK — carousel / gif / video
+        ============================================================ */
+        function buildMediaBlock(p) {
+        const m = p.media;
+        if (!m) return `<div style="width:100%;height:220px;background:linear-gradient(135deg,${p.color}88,${p.color}44);display:flex;align-items:center;justify-content:center;"><span style="font-size:48px;">🎮</span></div>`;
+
+        if (m.type === 'video') {
+        return `<div style="width:100%;background:#000;line-height:0;">
+        <video controls autoplay muted loop style="width:100%;max-height:340px;display:block;object-fit:contain;">
+        <source src="${m.file}" type="video/mp4">
+        <source src="${m.file.replace(/\.mp4$/i,'.webm')}" type="video/webm">
+        <p style="color:#aaa;padding:16px;font-size:13px;">Video unavailable — check the file path.</p>
+        </video>
+        </div>`;
+        }
+
+        if (m.type === 'gif') {
+        return `<div style="width:100%;background:#000;display:flex;align-items:center;justify-content:center;max-height:340px;overflow:hidden;line-height:0;">
+        <img src="${m.file}" alt="${p.title}" style="max-width:100%;max-height:340px;object-fit:contain;display:block;">
+        </div>`;
+        }
+
+        if (m.type === 'carousel') {
+        const id = 'car-'+p.id;
+        const imgs = m.files;
+        let dots = imgs.map((_,i)=>`<span id="${id}-dot-${i}" onclick="carGoTo('${id}',${i})" style="width:8px;height:8px;border-radius:50%;background:${i===0?'white':'rgba(255,255,255,0.4)'};cursor:pointer;transition:background 0.2s;"></span>`).join('');
+        let slides = imgs.map((f,i)=>`<img src="${f}" class="car-slide" data-idx="${i}" style="display:${i===0?'block':'none'};max-width:100%;max-height:320px;object-fit:contain;margin:0 auto;">`).join('');
+        return `<div id="${id}" style="position:relative;width:100%;background:#000;overflow:hidden;user-select:none;" data-cur="0">
+        ${slides}
+        ${imgs.length>1?`
+        <button onclick="carPrev('${id}')" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.55);color:white;border:none;border-radius:50%;width:32px;height:32px;font-size:18px;cursor:pointer;z-index:3;line-height:1;">‹</button>
+        <button onclick="carNext('${id}')" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.55);color:white;border:none;border-radius:50%;width:32px;height:32px;font-size:18px;cursor:pointer;z-index:3;line-height:1;">›</button>
+        <div style="position:absolute;bottom:8px;left:0;right:0;display:flex;justify-content:center;gap:6px;">${dots}</div>
+        `:''}
+        </div>`;
+        }
+        return '';
+        }
+
+        function carGoTo(id, idx) {
+        const c = document.getElementById(id); if(!c) return;
+        c.querySelectorAll('.car-slide').forEach((s,i) => s.style.display = i===idx?'block':'none');
+        for(let i=0; i<20; i++){
+        const d=document.getElementById(id+'-dot-'+i);
+        if(d) d.style.background = i===idx?'white':'rgba(255,255,255,0.4)';
+        }
+        c.dataset.cur = idx;
+        }
+        function carNext(id) {
+        const c=document.getElementById(id); if(!c)return;
+        const n=c.querySelectorAll('.car-slide').length;
+        carGoTo(id,(parseInt(c.dataset.cur||0)+1)%n);
+        }
+        function carPrev(id) {
+        const c=document.getElementById(id); if(!c)return;
+        const n=c.querySelectorAll('.car-slide').length;
+        carGoTo(id,(parseInt(c.dataset.cur||0)-1+n)%n);
+        }
+
+        /* ============================================================
+        WINDOW MANAGER
+        ============================================================ */
+        const WIN_IDS   = ['about','projects','skills','contact','cv'];
+        const WIN_ICONS = ['🗿','🗂️','⚡','✉️','📄'];
+        const WIN_LABELS= ['About me','Projects','Skills','Contact','Resume'];
+        const winState  = {};
+        function getState(id){ return winState[id]||'closed'; }
+        let zTop = 100;
+
+        function setState(id, state) {
+        const el=document.getElementById('win-'+id); if(!el)return;
+        winState[id]=state;
+        el.classList.remove('open','minimized');
+        if(state==='open')         { el.classList.add('open');       zTop+=2; el.style.zIndex=zTop; }
+        else if(state==='minimized'){ el.classList.add('minimized'); }
+        updateTaskbar();
+        }
+        function toggleWin(id) {
+        if(AC.state==='suspended')AC.resume();
+        getState(id)==='open' ? (sClose(),setState(id,'closed')) : (sOpen(),setState(id,'open'));
+        }
+        function openWin(id)  { if(AC.state==='suspended')AC.resume(); sOpen(); setState(id,'open'); }
+        function closeWin(id) { sClose(); setState(id,'closed'); }
+        function minWin(id) {
+        const s=getState(id);
+        if(s==='minimized'){ sOpen(); setState(id,'open'); }
+        else if(s==='open'){ sMin();  setState(id,'minimized'); }
+        }
+        function updateTaskbar() {
+        const tb=document.getElementById('tb-btns'); tb.innerHTML='';
+        const all  = [...WIN_IDS,...PROJECTS.map(p=>'proj-'+p.id)];
+        const allI = [...WIN_ICONS,...PROJECTS.map(()=>'🎮')];
+        const allL = [...WIN_LABELS,...PROJECTS.map(p=>p.title)];
+        all.forEach((id,i) => {
+        const s=getState(id);
+        if(s==='open'||s==='minimized'){
+        const b=document.createElement('button');
+        b.className='tb-btn'+(s==='open'?' active':'');
+        b.innerHTML=allI[i]+' '+allL[i]; b.onclick=()=>minWin(id);
+        tb.appendChild(b);
+        }
+        });
+        }
+
+        /* DRAG */
+        let dragWin=null;
+        function makeDraggable(id) {
+        const tb=document.getElementById('tb-'+id), win=document.getElementById('win-'+id);
+        if(!tb||!win)return;
+        tb.addEventListener('mousedown',e=>{
+        if(e.target.classList.contains('wbtn'))return;
+        zTop+=2; win.style.zIndex=zTop;
+        win.style.transform='none';
+        const dtR=document.getElementById('dt').getBoundingClientRect();
+        const wR=win.getBoundingClientRect();
+        dragWin={id,dtR,ox:e.clientX-wR.left,oy:e.clientY-wR.top};
+        e.preventDefault();
+        });
+        win.addEventListener('mousedown',()=>{zTop+=2;win.style.zIndex=zTop;});
+        }
+        WIN_IDS.forEach(id=>makeDraggable(id));
+        document.addEventListener('mousemove',e=>{
+        if(!dragWin)return;
+        const{dtR}=dragWin, win=document.getElementById('win-'+dragWin.id); if(!win)return;
+        let nx=e.clientX-dtR.left-dragWin.ox, ny=e.clientY-dtR.top-dragWin.oy;
+        nx=Math.max(0,Math.min(nx,dtR.width-60));
+        ny=Math.max(0,Math.min(ny,dtR.height-44));
+        win.style.left=nx+'px'; win.style.top=ny+'px';
+        });
+        document.addEventListener('mouseup',()=>{dragWin=null;});
+
+        /* ============================================================
+        PROJECT DETAIL WINDOWS
+        Titlebar colour now follows dark mode via CSS variable trick
+        ============================================================ */
+        function buildProjectWindow(p) {
+        const el=document.getElementById('win-proj-'+p.id);
+        el.innerHTML=`
+        <div class="win-tb" id="tb-proj-${p.id}"
+        style="--proj-color:${p.color};background:linear-gradient(180deg,${p.color}dd,${p.color}aa 45%,${p.color}cc);border-radius:7px 7px 0 0;"
+        data-proj-color="${p.color}">
+        <div class="win-tb-ico">🎮</div>
+        <div class="win-tb-txt">${p.title} —</div>
+        <div class="win-btns">
+        <button class="wbtn mi" onclick="minWin('proj-${p.id}')">—</button>
+        <button class="wbtn cl" onclick="closeWin('proj-${p.id}')">✕</button>
+        </div>
+        </div>
+        <div class="win-addr">
+        <button class="anav" onclick="closeWin('proj-${p.id}');openWin('projects');">← Projects</button>
+        <div class="addr-bar" style="margin-left:6px;">lahbibe.barone/projects/${p.title.toLowerCase().replace(/\s+/g,'-')}</div>
+        </div>
+
+        ${buildMediaBlock(p)}
+
+        <div class="win-body" style="max-height:320px;">
+        <div class="aqua-card">
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;">
+        <span class="aqua-badge">${p.year}</span>
+        <span class="aqua-badge">${p.type}</span>
+        <span class="aqua-badge" style="background:rgba(80,200,120,0.2);border-color:rgba(80,200,120,0.4);color:#0a6a3a;">✓ ${p.status}</span>
+        </div>
+        <div class="win-text-h" style="margin-bottom:6px;">📋 Description</div>
+        <div class="win-text" style="line-height:1.7;">${p.desc}</div>
+        </div>
+
+        <div class="aqua-card">
+        <div class="win-text-h" style="margin-bottom:8px;">📝 Details</div>
+        <div class="win-text" style="line-height:1.7;">${p.details||'—'}</div>
+        </div>
+
+        <div class="aqua-card">
+        <div class="win-text-h" style="margin-bottom:10px;">🛠️ Stack</div>
+        <div>${p.tags.filter(Boolean).map(t=>`<span class="aqua-pill"><span class="aqua-pill-dot"></span>${t}</span>`).join('')}</div>
+        </div>
+
+        <div class="aqua-card" style="display:flex;gap:16px;flex-wrap:wrap;">
+        <div class="win-text-sm">🔗 <strong>Link:</strong> <a href="${p.url}" target="_blank" style="color:#1a9dd8;">${p.url}</a></div>
+        </div>
+        </div>
+
+        <div class="proj-statusbar">
+        <span>${p.tech}</span><span style="margin-left:auto;">${p.year}</span>
+        </div>`;
+
+        makeDraggable('proj-'+p.id);
+        el.addEventListener('mousedown',()=>{zTop+=2;el.style.zIndex=zTop;});
+        }
+        PROJECTS.forEach(p=>buildProjectWindow(p));
+
+        /* Dark mode: update project titlebars, statusbars, addr bars */
+        function updateProjTitlebars() {
+        document.querySelectorAll('[data-proj-color]').forEach(tb => {
+        const c = tb.dataset.projColor;
+        tb.style.background = isDark
+        ? 'linear-gradient(180deg,#2a1060 0%,#1a0840 45%,#120630)'
+        : `linear-gradient(180deg,${c}dd,${c}aa 45%,${c}cc)`;
+        });
+        // statusbars and addr bars inside project windows update via CSS
+        // (the .desktop.dark selectors handle them automatically)
+        }
+        // Patch toggleDark to also update proj titlebars
+        const _origToggleDark = toggleDark;
+        toggleDark = function() { _origToggleDark(); updateProjTitlebars(); };
+
+        function openProject(idx) {
+        const p=PROJECTS[idx], id='proj-'+p.id, el=document.getElementById('win-'+id);
+        const dt=document.getElementById('dt').getBoundingClientRect();
+        el.style.transform='none';
+        el.style.left=Math.min(130+idx*24,dt.width-800)+'px';
+        el.style.top =Math.min(60+idx*18, dt.height-480)+'px';
+        openWin(id);
+        }
+
+        /* ICON SELECTION */
+        document.querySelectorAll('.dsk-icon').forEach(ico=>{
+        ico.addEventListener('mousedown',e=>{
+        e.stopPropagation();
+        document.querySelectorAll('.dsk-icon').forEach(i=>i.classList.remove('selected'));
+        ico.classList.add('selected');
+        });
+        });
+        document.getElementById('dt').addEventListener('mousedown',e=>{
+        if(!e.target.closest('.dsk-icon'))
+        document.querySelectorAll('.dsk-icon').forEach(i=>i.classList.remove('selected'));
+        });
+
+        /* CLOCK */
+        function tick(){
+        const n=new Date();
+        document.getElementById('clock-h').textContent=n.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+        document.getElementById('clock-d').textContent=n.toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short'});
+        }
+        tick(); setInterval(tick,10000);
+
+        /* BUBBLES */
+        const ct=document.getElementById('particles');
+        [8,12,16,20,26,32,10,14,18,22,9,13,11,17,24,28,7,19,15,36].forEach((s,i)=>{
+        const b=document.createElement('div'); b.className='bbl';
+        b.style.cssText=`width:${s}px;height:${s}px;left:${2+i*4.8}%;bottom:${48+Math.random()*130}px;animation-duration:${5+Math.random()*13}s;animation-delay:${Math.random()*11}s;`;
+        ct.appendChild(b);
+        });
+
+        /* ============================================================
+        DEEP LINKS — URL parameter ?open=<slug>
+
+        Examples to put in your CV:
+        Default (projects open):
+        index.html
+        Contact page:
+        index.html?open=contact
+        Velvet Steps:
+        index.html?open=velvet-steps
+        Darius:
+        index.html?open=darius
+        FNF:
+        index.html?open=fnf
+        TRPG:
+        index.html?open=trpg
+
+        The slug is matched against the start of the project title,
+        lowercased with spaces as dashes.
+        ============================================================ */
+        function handleDeepLink() {
+        const param = (new URLSearchParams(window.location.search).get('open')||'projects').toLowerCase().trim();
+        if(param==='contact'){  openWin('contact'); return; }
+        if(param==='about'){    openWin('about');   return; }
+        if(param==='skills'){   openWin('skills');  return; }
+        if(param==='cv'){       openWin('cv');      return; }
+        if(param==='projects'){ openWin('projects');return; }
+        // match project slug — compare against title lowercased
+        const idx=PROJECTS.findIndex(p=>{
+        const slug=p.title.toLowerCase().replace(/\s+/g,'-');
+        return slug.startsWith(param) || param.split('-').every(w=>slug.includes(w));
+        });
+        if(idx>=0){
+        openWin('projects');
+        setTimeout(()=>openProject(idx),360);
+        } else {
+        openWin('projects');
+        }
+        }
+
+        /* INIT */
+        buildFilterBar();
+        buildProjectGrid();
+        window.addEventListener('load',()=>{ setTimeout(handleDeepLink,220); });
+    </script>
+</body>
+</html>
