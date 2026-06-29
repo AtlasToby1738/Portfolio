@@ -1158,14 +1158,13 @@
                 <div class="hero-tag">✦ GAME PROGRAMMER PORTFOLIO</div>
                 <div class="hero-name"><strong>Lahbibe</strong> Barone</div>
                 <div class="hero-role">"If you don’t take risks, you can’t create a future"</div>
-                <div class="hero-hint">Double-click the icons to explore</div>
             </div>
             <div class="icon-bar">
-                <div class="dsk-icon" ondblclick="toggleWin('about')">    <div class="ico-box">🗿</div><p>About me</p></div>
-                <div class="dsk-icon" ondblclick="toggleWin('projects')"> <div class="ico-box">🗂️</div><p>Projects</p></div>
-                <div class="dsk-icon" ondblclick="toggleWin('skills')">   <div class="ico-box">⚡</div><p>Skills</p></div>
-                <div class="dsk-icon" ondblclick="toggleWin('contact')">  <div class="ico-box">✉️</div><p>Contact</p></div>
-                <div class="dsk-icon" ondblclick="toggleWin('cv')">       <div class="ico-box">📄</div><p>Resume</p></div>
+                <div class="dsk-icon" onclick="toggleWin('about')">    <div class="ico-box">🗿</div><p>About me</p></div>
+                <div class="dsk-icon" onclick="toggleWin('projects')"> <div class="ico-box">🗂️</div><p>Projects</p></div>
+                <div class="dsk-icon" onclick="toggleWin('skills')">   <div class="ico-box">⚡</div><p>Skills</p></div>
+                <div class="dsk-icon" onclick="toggleWin('contact')">  <div class="ico-box">✉️</div><p>Contact</p></div>
+                <div class="dsk-icon" onclick="toggleWin('cv')">       <div class="ico-box">📄</div><p>Resume</p></div>
             </div>
         </div>
 
@@ -1376,7 +1375,7 @@
         { id:0,
         title:'Velvet Steps',
         sub:'First Game Jam Project',
-        image:'VelvetSteps.png',
+        image:'Velvet1.gif',
         // 🖼️ CAROUSEL — add/remove screenshot filenames freely
         media:{ type:'carousel', files:['VelvetSteps.png','Velvet1.gif','Velvet2.gif','Velvet3.gif'] },
         desc:'Velvet Steps is a first person cozy game where you must prepare a birthday party before all the guests arrive.',
@@ -1415,7 +1414,7 @@
         { id:3,
         title:'Making a TRPG mixed with Chess mechanics',
         sub:'TRPG Mixed with Chess Game',
-        image:'WorkInProgress.png',
+        image:'TRPG.gif',
         media:{ type:'gif', file:'TRPG.gif' },
         desc:"I am currently creating a TRPG in which you will follow Ben's life. The main mechanic is chess, with new pieces and squares.",
         // ✍️ DETAILS
@@ -1479,7 +1478,7 @@
         </div>
         <div class="proj-title">${p.title}</div>
         <div class="proj-sub">${p.sub}</div>
-        <div class="proj-desc">${p.desc}</div>
+ 
         <div class="proj-more">▶ Details</div>`;
         card.appendChild(imgDiv);
         card.appendChild(overlay);
@@ -1496,12 +1495,12 @@
         if (!m) return `<div style="width:100%;height:220px;background:linear-gradient(135deg,${p.color}88,${p.color}44);display:flex;align-items:center;justify-content:center;"><span style="font-size:48px;">🎮</span></div>`;
 
         if (m.type === 'video') {
-          return `<div style="width:100%;background:#000;line-height:0;">
-            <iframe width="100%" height="340" 
-              src="https://www.youtube-nocookie.com/embed/${m.file}"
-              frameborder="0" allowfullscreen style="display:block;">
-            </iframe>
-          </div>`;
+        return `<div style="width:100%;background:#000;line-height:0;">
+        <iframe width="100%" height="340"
+        src="https://www.youtube-nocookie.com/embed/${m.file}"
+        frameborder="0" allowfullscreen style="display:block;">
+        </iframe>
+        </div>`;
         }
 
         if (m.type === 'gif') {
@@ -1515,10 +1514,10 @@
         const imgs = m.files;
         let dots = imgs.map((_,i)=>`<span id="${id}-dot-${i}" onclick="carGoTo('${id}',${i})" style="width:8px;height:8px;border-radius:50%;background:${i===0?'white':'rgba(255,255,255,0.4)'};cursor:pointer;transition:background 0.2s;"></span>`).join('');
         let slides = imgs.map((f,i)=>{
-          const isGif = f.toLowerCase().endsWith('.gif');
-          return `<img src="${f}" class="car-slide" data-idx="${i}" 
-            style="display:${i===0?'block':'none'};max-width:100%;max-height:320px;object-fit:contain;margin:0 auto;"
-            ${isGif ? 'data-gif="true"' : ''}>`;
+        const isGif = f.toLowerCase().endsWith('.gif');
+        return `<img src="${f}" class="car-slide" data-idx="${i}"
+        style="display:${i===0?'block':'none'};max-width:100%;max-height:320px;object-fit:contain;margin:0 auto;"
+        ${isGif ? 'data-gif="true"' : ''}>`;
         }).join('');
         return `<div id="${id}" style="position:relative;width:100%;background:#000;overflow:hidden;user-select:none;" data-cur="0">
         ${slides}
@@ -1576,28 +1575,28 @@
         }
         function openWin(id)  { if(AC.state==='suspended')AC.resume(); sOpen(); setState(id,'open'); }
         function closeWin(id) {
-          sClose();
-          // Stop la vidéo YouTube en vidant l'iframe
-          const win = document.getElementById('win-'+id);
-          if(win) {
-            const iframe = win.querySelector('iframe');
-            if(iframe) { const src=iframe.src; iframe.src=''; iframe.src=src; }
-          }
-          setState(id,'closed');
+        sClose();
+        // Stop la vidéo YouTube en vidant l'iframe
+        const win = document.getElementById('win-'+id);
+        if(win) {
+        const iframe = win.querySelector('iframe');
+        if(iframe) { const src=iframe.src; iframe.src=''; iframe.src=src; }
+        }
+        setState(id,'closed');
         }
         function minWin(id) {
-  const s=getState(id);
-  if(s==='minimized'){ sOpen(); setState(id,'open'); }
-  else if(s==='open'){
-    sMin();
-    const win = document.getElementById('win-'+id);
-    if(win) {
-      const iframe = win.querySelector('iframe');
-      if(iframe) { const src=iframe.src; iframe.src=''; iframe.src=src; }
-    }
-    setState(id,'minimized');
-  }
-}
+        const s=getState(id);
+        if(s==='minimized'){ sOpen(); setState(id,'open'); }
+        else if(s==='open'){
+        sMin();
+        const win = document.getElementById('win-'+id);
+        if(win) {
+        const iframe = win.querySelector('iframe');
+        if(iframe) { const src=iframe.src; iframe.src=''; iframe.src=src; }
+        }
+        setState(id,'minimized');
+        }
+        }
         function updateTaskbar() {
         const tb=document.getElementById('tb-btns'); tb.innerHTML='';
         const all  = [...WIN_IDS,...PROJECTS.map(p=>'proj-'+p.id)];
@@ -1643,7 +1642,6 @@
 
         /* ============================================================
         PROJECT DETAIL WINDOWS
-        Titlebar colour now follows dark mode via CSS variable trick
         ============================================================ */
         function buildProjectWindow(p) {
         const el=document.getElementById('win-proj-'+p.id);
@@ -1755,24 +1753,8 @@
 
         /* ============================================================
         DEEP LINKS — URL parameter ?open=<slug>
-
-        Examples to put in your CV:
-        Default (projects open):
-        index.html
-        Contact page:
-        index.html?open=contact
-        Velvet Steps:
-        index.html?open=velvet-steps
-        Darius:
-        index.html?open=darius
-        FNF:
-        index.html?open=fnf
-        TRPG:
-        index.html?open=trpg
-
-        The slug is matched against the start of the project title,
-        lowercased with spaces as dashes.
         ============================================================ */
+
         function handleDeepLink() {
         const param = (new URLSearchParams(window.location.search).get('open')||'projects').toLowerCase().trim();
         if(param==='contact'){  openWin('contact'); return; }
@@ -1788,9 +1770,8 @@
         if(idx>=0){
         openWin('projects');
         setTimeout(()=>openProject(idx),360);
-        } else {
-        openWin('projects');
         }
+        else { openWin('projects'); }
         }
 
         /* INIT */
